@@ -1,9 +1,5 @@
-rm(list = ls())
-library(tidyverse)
-
-airbnb = read_csv("assign_2-2.csv")
-
-airbnb = rename(airbnb, neighborhood = neighbourhood)
+airbnb = read_csv("assign_2.csv") %>%
+  rename(neighborhood = neighbourhood)
 
 neighborhoods = airbnb %>% 
   select(neighborhood) %>% 
