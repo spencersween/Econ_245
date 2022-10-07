@@ -2,10 +2,6 @@
 #Emma Joergensen
 
 library(tidyverse)
-library(dplyr)
-library(pacman)
-library(readr)
-library(plyr)
 
 #1) setting up data
 
@@ -35,10 +31,17 @@ airbnb_top_neighborhoods <- airbnb %>% filter(neighborhood %in% neighborhoods$ne
 
 #d.
 summary_stats_top_neighborhoods <- airbnb_top_neighborhoods %>% 
-  group_by(neighborhood) %>% 
-  summarize(avg_square_feet = mean(square_feet, na.rm = TRUE),
-            avg_price = mean(price, na.rm = TRUE),
-            sd_price = sd(price, na.rm = TRUE),
-            max_price = max(price, na.rm = TRUE),
-            min_price = min(price, na.rm = TRUE)) %>% 
-  arrange(-avg_square_feet)
+  group_by(neighborhood) 
+
+airbnb_top_neighborhoods %>% group_by(neighborhood)
+  summarize(avg_square_feet = mean(square_feet, na.rm = T),
+            avg_price = mean(price, na.rm = T),
+            sd_price = sd(price, na.rm = T),
+            max_price = max(price, na.rm = T),
+            min_price = min(price, na.rm = T)) 
+
+ 
+
+
+rm(airbnb_top_neighbrhoods)
+
