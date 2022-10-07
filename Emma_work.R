@@ -27,10 +27,10 @@ neighborhoods <- count(airbnb, neighborhood)
 neighborhoods <- na.omit(neighborhoods)
 neighborhoods <- head(arrange(neighborhoods,desc(n)), n = 20)
 
-#c. 
+#c. airbnb with top 20 neighborhoods only
 airbnb_top_neighborhoods <- airbnb %>% filter(neighborhood %in% neighborhoods$neighborhood)
 
-#d.
+#d.summary statistics for top 20 neighborhoods
 summary_stats_top_neighborhoods <- airbnb_top_neighborhoods %>% 
   group_by(neighborhood) %>%
   summarize(avg_square_feet = mean(square_feet, na.rm = TRUE),
@@ -41,5 +41,9 @@ summary_stats_top_neighborhoods <- airbnb_top_neighborhoods %>%
   arrange(desc(avg_square_feet))
 
  
-#e.
+#e. find and save the highest average square feet
+highest_avg_square_ft <-max(summary_stats_top_neighborhoods$ avg_square_feet, na.rm = TRUE)
+
+#f. find and save the second highest average price
+second_avg_price <- sort(summary_stats_top_neighborhoods$avg_price, decreasing=T)[2]
 
