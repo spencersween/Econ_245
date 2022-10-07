@@ -1,6 +1,6 @@
 library(tidyverse)
 
-airbnb = read_csv("assign_2.csv")
+airbnb = read_csv("assign_2-2.csv")
 
 airbnb = rename(airbnb, neighborhood = neighbourhood)
 
