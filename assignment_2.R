@@ -1,15 +1,17 @@
+rm(list = ls())
 library(tidyverse)
 
-airbnb = read_csv("assign_2.csv")
+airbnb = read_csv("assign_2-2.csv")
 
 airbnb = rename(airbnb, neighborhood = neighbourhood)
 
 neighborhoods = airbnb %>% 
   select(neighborhood) %>% 
+  filter(is.na(neighborhood) == F) %>%
   group_by(neighborhood) %>% 
-  count()
-
-neighborhoods = neighborhoods %>% filter(is.na(n) == F) %>% arrange(-n) %>% head(20)
+  count() %>% 
+  arrange(-n) %>% 
+  head(20)
 
 airbnb_top_neighborhoods = airbnb %>% 
   filter(neighborhood %in% neighborhoods$neighborhood)
@@ -24,6 +26,7 @@ summary_stats_top_neighborhoods = airbnb_top_neighborhoods %>%
   arrange(-avg_square_feet)
 
 highest_avg_square_ft = summary_stats_top_neighborhoods$avg_square_feet[1]
-
 second_avg_price = summary_stats_top_neighborhoods$avg_price[2]
+
+
 
